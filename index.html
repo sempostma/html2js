@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML2JS</title>
+
+    <meta name="author" content="Sem Postma">
+    <meta name="description" content="Converts raw html to fast javascript code">
+    <meta name="keywords" content="html2js, html, js, convert, javascript">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#e0562e">
+    <meta name="theme-color" content="#e0562e">
+
+    <style>
+        html {
+            font-family: sans-serif, Verdana, Geneva, Tahoma;
+        }
+
+        body {
+            margin: 10px;
+        }
+
+        small {
+            color: #999;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* The alert message box */
+
+        .alert {
+            padding: 20px;
+            background-color: #ff9800;
+            /* Red */
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        /* The close button */
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* When moving the mouse over the close button */
+
+        .closebtn:hover {
+            color: black;
+        }
+
+        .left {
+            float: left;
+            width: 50%;
+        }
+
+        .right {
+            float: right;
+            width: 50%;
+        }
+
+        #result {
+            display: block;
+            clear: both;
+            border: 1px solid #4CAF50;
+        }
+
+        #html-result {
+            border: 1px solid #2196F3;
+            margin-left: 10px;
+            height: 510px;
+            overflow-y: scroll;
+        }
+
+        input,
+        textarea {
+            margin: 0;
+            width: 100%;
+            height: 400px;
+        }
+
+
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            background-color: #F5F5F5;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+            background-color: #F5F5F5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #F90;
+            background-image: -webkit-linear-gradient(90deg,
+            rgba(255, 255, 255, .2) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, .2) 50%,
+            rgba(255, 255, 255, .2) 75%,
+            transparent 75%,
+            transparent)
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="left">
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Be carefull with script tags
+            </div>
+            <label for="input">HTML</label>
+            <div>
+                <small>Start typing html and the output will appear</small>
+            </div>
+            <textarea name="input" id="input" cols="30" rows="10"></textarea>
+        </div>
+        <div class="right">
+            <div id="html-result"></div>
+        </div>
+        <textarea readonly spellcheck="false" name="result" id="result" cols="30" rows="10"></textarea>
+    </main>
+
+    <script src="html2.js"></script>
+    <script>
+        var jsResult = document.getElementById('result');
+        var htmlResult = document.getElementById('html-result');
+        var input = document.getElementById('input');
+        input.addEventListener('input', debounce(handleParseClick, 300));
+
+        function handleParseClick() {
+            htmlResult.innerHTML = input.value;
+            jsResult.innerHTML = window.html2js.parse(input.value);
+        }
+
+        function debounce(func, wait, immediate) {
+            var timeout;
+            return function () {
+                var context = this, args = arguments;
+                var later = function () {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        };
+    </script>
+</body>
+
+</html>
