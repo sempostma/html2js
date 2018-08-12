@@ -7,18 +7,25 @@
         return text.replace(/\n/g, '\\n');
     }
 
-    var html2js = function (element) { };
+    var html2js = function () { };
     html2js.parse = function (html, functionName, containerName) {
         functionName = functionName || 'createNode';
         containerName = containerName || 'container';
-        var parser = new DOMParser();
-        var dom = parser.parseFromString(html, 'text/html');
-        if (parserError(dom)) return parserError(dom).textContent;
+        // var parser = new DOMParser();
+        // var dom = parser.parseFromString('', 'text/html');
+        // if (parserError(dom)) return parserError(dom).textContent;
+        var div = document.createElement('div');
+        div.innerHTML = html;
         var res = ['function ', functionName, '(', containerName, ')', ' {\n'];
-        dom.normalize();
+        // div.normalize();
         var vi = 0;
 
-        parseRecursive(dom.documentElement, containerName);
+        if (div.children.length > 1) {
+            parseRecursive(div, containerName);
+        } else {
+            parseRecursive(div.firstChild, containerName);
+        }
+
         res.push('}');
         return res.join('');
 
@@ -63,11 +70,11 @@
 
         if (parsererrorNS === 'http://www.w3.org/1999/xhtml') {
             // In PhantomJS the parseerror element doesn't seem to have a special namespace, so we are just guessing here :(
-            return parsedDocument.getElementsByTagName("parsererror").length > 0 
+            return parsedDocument.getElementsByTagName("parsererror").length > 0
                 ? parsedDocument.children[0] : false;
         }
 
-        return parsedDocument.getElementsByTagNameNS(parsererrorNS, 'parsererror').length > 0 
+        return parsedDocument.getElementsByTagNameNS(parsererrorNS, 'parsererror').length > 0
             ? parsedDocument.children[0] : false;
     };
 

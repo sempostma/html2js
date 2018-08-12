@@ -18,15 +18,15 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#e0562e">
     <meta name="theme-color" content="#e0562e">
-    
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112439526-4"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-      gtag('config', 'UA-90014538-6');
+        gtag('config', 'UA-90014538-6');
     </script>
 
 
@@ -134,6 +134,36 @@
 
 <body>
     <main>
+        <header>
+            <h1>HTML2JS</h1>
+            <p>Converts raw html to fast javascript code.</p>
+
+            <h4>More projects:</h4>
+            <ul>
+                <li>
+                    <a target="_blank" href="https://esstudio.site/json2csv/">JSON2CSV</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://github.com/LesterGallagher/planetary-factsheet">NASA Planetary factsheet</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://json-gui.site/">JSON Gui</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://esstudio.site/encode-into-image/">Encode secret image</a>
+                </li>
+            </ul>
+            <small>A list of all projects can be found:
+                <a target="_blank" href="https://esstudio.site/">here</a>
+            </small>
+        </header>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- HTML2JS -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9732535637352249" data-ad-slot="6537795252" data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
         <div class="left">
             <div class="alert">
                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -157,10 +187,20 @@
         var htmlResult = document.getElementById('html-result');
         var input = document.getElementById('input');
         input.addEventListener('input', debounce(handleParseClick, 300));
+        input.addEventListener('keydown', keyHandler, false);
 
         function handleParseClick() {
             htmlResult.innerHTML = input.value;
             jsResult.innerHTML = window.html2js.parse(input.value);
+        }
+
+        function keyHandler(e) {
+            if (e.keyCode == 9 || e.which == 9) {
+                e.preventDefault();
+                var s = this.selectionStart;
+                this.value = this.value.substring(0, this.selectionStart) + "    " + this.value.substring(this.selectionEnd);
+                this.selectionEnd = s + 4;
+            }
         }
 
         function debounce(func, wait, immediate) {
