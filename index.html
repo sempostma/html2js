@@ -18,7 +18,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#e0562e">
     <meta name="theme-color" content="#e0562e">
-    
+
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -31,6 +31,7 @@
         gtag('config', 'UA-90014538-6');
     </script>
 
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     <style>
         html {
@@ -47,6 +48,13 @@
 
         * {
             box-sizing: border-box;
+        }
+
+        .container {
+            margin: 40px auto;
+            margin-top: 0;
+            max-width: 100%;
+            width: 1200px;
         }
 
         /* The alert message box */
@@ -123,30 +131,44 @@
         ::-webkit-scrollbar-thumb {
             background-color: #F90;
             background-image: -webkit-linear-gradient(90deg,
-            rgba(255, 255, 255, .2) 25%,
-            transparent 25%,
-            transparent 50%,
-            rgba(255, 255, 255, .2) 50%,
-            rgba(255, 255, 255, .2) 75%,
-            transparent 75%,
-            transparent)
+                rgba(255, 255, 255, .2) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, .2) 50%,
+                rgba(255, 255, 255, .2) 75%,
+                transparent 75%,
+                transparent)
         }
     </style>
 </head>
 
 <body>
-    <main>
+    <main class="container">
         <header>
             <h1>HTML2JS</h1>
             <p>Converts raw html to fast javascript code.</p>
-
+            <p>
+                <a href="https://github.com/LesterGallagher/html2js">Github repository</a><br>
+                <a href="https://github.com/LesterGallagher/html2js-loader">HTML2JS webpack loader</a>
+            </p>
+            <!-- Place this tag where you want the button to render. -->
+            <a class="github-button" href="https://github.com/LesterGallagher" aria-label="Follow @LesterGallagher on GitHub">Follow
+                @LesterGallagher</a>
+            <!-- Place this tag where you want the button to render. -->
+            <a class="github-button" href="https://github.com/LesterGallagher/html2js-loader/subscription" data-icon="octicon-eye"
+                aria-label="Watch LesterGallagher/html2js-loader on GitHub">Watch</a>
+            <!-- Place this tag where you want the button to render. -->
+            <a class="github-button" href="https://github.com/LesterGallagher/html2js-loader" data-icon="octicon-star"
+                aria-label="Star LesterGallagher/html2js-loader on GitHub">Star</a>
+            <br>
             <h4>More projects:</h4>
             <ul>
                 <li>
                     <a target="_blank" href="https://esstudio.site/json2csv/">JSON2CSV</a>
                 </li>
                 <li>
-                    <a target="_blank" href="https://github.com/LesterGallagher/planetary-factsheet">NASA Planetary factsheet</a>
+                    <a target="_blank" href="https://github.com/LesterGallagher/planetary-factsheet">NASA Planetary
+                        factsheet</a>
                 </li>
                 <li>
                     <a target="_blank" href="https://json-gui.site/">JSON Gui</a>
@@ -159,12 +181,14 @@
                 <a target="_blank" href="https://esstudio.site/">here</a>
             </small>
         </header>
+        <br>
         <!-- HTML2JS -->
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9732535637352249" data-ad-slot="6537795252" data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9732535637352249" data-ad-slot="6537795252"
+            data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
+        <br>
         <div class="left">
             <div class="alert">
                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -182,7 +206,7 @@
         <textarea readonly spellcheck="false" name="result" id="result" cols="30" rows="10"></textarea>
     </main>
 
-    <script src="html2.js"></script>
+    <script src="html2js.js"></script>
     <script>
         var jsResult = document.getElementById('result');
         var htmlResult = document.getElementById('html-result');
